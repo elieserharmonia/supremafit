@@ -8,6 +8,8 @@ export type Exercise = {
   rest: string;
   level: "Iniciante" | "Intermediário" | "Avançado";
   orientation: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 export type WorkoutPlan = {
@@ -43,6 +45,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Supino Reto Máquina",
         equipment: "Máquina de supino reto",
+        image: "/imagens/equipamentos/supino-reto-maquina.png",
+        imageAlt: "Guia visual do Supino Reto Máquina com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Peitoral maior, tríceps e deltoide anterior",
         sets: "4 séries x 8-12 reps",
         rest: "60-90s",
@@ -52,6 +56,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Supino Inclinado com Halteres",
         equipment: "Banco inclinado e halteres",
+        image: "/imagens/equipamentos/banco-inclinado-com-halteres.png",
+        imageAlt: "Guia visual do Banco Inclinado com Halteres com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Peitoral superior",
         sets: "4 séries x 10-12 reps",
         rest: "60-90s",
@@ -61,6 +67,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Crucifixo Máquina",
         equipment: "Peck deck / crucifixo máquina",
+        image: "/imagens/equipamentos/crucifixo-maquina-peck-deck.png",
+        imageAlt: "Guia visual do Crucifixo Máquina / Peck Deck com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Peitoral medial",
         sets: "3 séries x 12-15 reps",
         rest: "45-60s",
@@ -70,6 +78,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Crossover no Cabo",
         equipment: "Cross over / polia dupla",
+        image: "/imagens/equipamentos/crossover-no-cabo-polia-dupla.png",
+        imageAlt: "Guia visual do Crossover no Cabo / Polia Dupla com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Peitoral e estabilizadores",
         sets: "3 séries x 12-15 reps",
         rest: "45-60s",
@@ -95,6 +105,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Leg Press 45°",
         equipment: "Leg press 45 graus",
+        image: "/imagens/equipamentos/leg-press-45-graus.png",
+        imageAlt: "Guia visual do Leg Press 45 graus com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Quadríceps, glúteos e posteriores",
         sets: "4 séries x 10-12 reps",
         rest: "75-90s",
@@ -104,6 +116,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Cadeira Extensora",
         equipment: "Cadeira extensora",
+        image: "/imagens/equipamentos/cadeira-extensora.png",
+        imageAlt: "Guia visual da Cadeira Extensora com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Quadríceps",
         sets: "4 séries x 12-15 reps",
         rest: "45-60s",
@@ -113,6 +127,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Mesa Flexora",
         equipment: "Mesa flexora",
+        image: "/imagens/equipamentos/mesa-flexora.png",
+        imageAlt: "Guia visual da Mesa Flexora com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Posterior de coxa",
         sets: "4 séries x 10-12 reps",
         rest: "60s",
@@ -122,6 +138,8 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
       {
         name: "Agachamento Smith",
         equipment: "Smith machine",
+        image: "/imagens/equipamentos/smith-machine.png",
+        imageAlt: "Guia visual da Smith Machine com início, execução, músculos trabalhados, séries, repetições e descanso.",
         muscle: "Quadríceps, glúteos e core",
         sets: "3 séries x 8-10 reps",
         rest: "90s",

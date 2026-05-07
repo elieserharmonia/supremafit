@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type Dispatch, type FormEvent, type SetStateAction } from "react";
 import { AlertTriangle, CheckCircle2, Droplets, Flame, Info, Salad, Sparkles, X } from "lucide-react";
 import { Exercise, StudentProfile, WorkoutCategory, getInactivityMessage, getRecommendedWorkout, workoutCategories, workouts } from "../lib/workouts";
 
@@ -8,19 +8,29 @@ export function TrainingExperience() {
   const [category, setCategory] = useState<WorkoutCategory>("Peito");
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [selected, setSelected] = useState<Exercise | null>(null);
-  const [tab, setTab] = useState<"exercicios" | "aquecimento">("exercicios");
+  const [tab, setTab] = useState<"exercicios" | "aquecimento" | "externas">("exercicios");
   const [profile, setProfile] = useState<StudentProfile | null>(null);
   const [history, setHistory] = useState<WorkoutCategory[]>([]);
   const [lastCheckIn, setLastCheckIn] = useState<string | null>(null);
+  const [externalActivities, setExternalActivities] = useState<ExternalActivity[]>([]);
+  const [externalForm, setExternalForm] = useState({
+    type: "Corrida",
+    duration: "30 min",
+    distance: "5 km",
+    intensity: "Moderada",
+    caption: "Atividade fora da academia para manter a constância."
+  });
 
   useEffect(() => {
     try {
       const savedProfile = localStorage.getItem("supremaStudentProfile");
       const savedHistory = localStorage.getItem("supremaWorkoutHistory");
       const savedCheckIn = localStorage.getItem("supremaLastCheckIn");
+      const savedExternal = localStorage.getItem("supremaExternalActivities");
       if (savedProfile) setProfile(JSON.parse(savedProfile));
       if (savedHistory) setHistory(JSON.parse(savedHistory));
       if (savedCheckIn) setLastCheckIn(savedCheckIn);
+      if (savedExternal) setExternalActivities(JSON.parse(savedExternal));
     } catch {}
   }, []);
 
@@ -37,13 +47,40 @@ export function TrainingExperience() {
   }
 
   function finishWorkout() {
+    const now = new Date().toISOString();
     const nextHistory = [...history, category].slice(-12);
     setHistory(nextHistory);
-    setLastCheckIn(new Date().toISOString());
+    setLastCheckIn(now);
     localStorage.setItem("supremaWorkoutHistory", JSON.stringify(nextHistory));
-    localStorage.setItem("supremaLastCheckIn", new Date().toISOString());
+    localStorage.setItem("supremaLastCheckIn", now);
     setDone({});
     alert("Treino registrado com sucesso. Excelente trabalho!");
+  }
+
+  function registerExternalActivity(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const now = new Date().toISOString();
+    const activity: ExternalActivity = {
+      id: String(Date.now()),
+      type: externalForm.type,
+      duration: externalForm.duration,
+      distance: externalForm.distance,
+      intensity: externalForm.intensity,
+      caption: externalForm.caption,
+      date: now
+    };
+    const nextActivities = [activity, ...externalActivities].slice(0, 12);
+    setExternalActivities(nextActivities);
+    setLastCheckIn(now);
+    localStorage.setItem("supremaExternalActivities", JSON.stringify(nextActivities));
+    localStorage.setItem("supremaLastCheckIn", now);
+    alert("Atividade externa registrada e pronta para aparecer no seu histórico. Hidrate-se e mantenha a constância!");
+  }
+
+  function clearExternalActivity(id: string) {
+    const nextActivities = externalActivities.filter((activity) => activity.id !== id);
+    setExternalActivities(nextActivities);
+    localStorage.setItem("supremaExternalActivities", JSON.stringify(nextActivities));
   }
 
   return (
@@ -122,9 +159,10 @@ export function TrainingExperience() {
         </ul>
       </section>
 
-      <div className="tabs">
+      <div className="tabs treino-tabs">
         <button type="button" onClick={() => setTab("exercicios")} className={`tab ${tab === "exercicios" ? "active" : ""}`}>Exercícios</button>
         <button type="button" onClick={() => setTab("aquecimento")} className={`tab ${tab === "aquecimento" ? "active" : ""}`}>Aquecimento</button>
+        <button type="button" onClick={() => setTab("externas")} className={`tab ${tab === "externas" ? "active" : ""}`}>Fora da academia</button>
       </div>
 
       {tab === "aquecimento" && (
@@ -148,6 +186,16 @@ export function TrainingExperience() {
         />
       ))}
 
+      {tab === "externas" && (
+        <ExternalActivitySection
+          form={externalForm}
+          setForm={setExternalForm}
+          activities={externalActivities}
+          onSubmit={registerExternalActivity}
+          onDelete={clearExternalActivity}
+        />
+      )}
+
       <div className="metric-grid">
         <div className="metric-mini"><small>Duração</small><b>60 min</b></div>
         <div className="metric-mini"><small>Volume</small><b>18.240 kg</b></div>
@@ -162,9 +210,125 @@ export function TrainingExperience() {
   );
 }
 
+type ExternalActivity = {
+  id: string;
+  type: string;
+  duration: string;
+  distance: string;
+  intensity: string;
+  caption: string;
+  date: string;
+};
+
+const externalActivityTypes = [
+  { name: "Corrida", icon: "🏃", hydration: "Beba água antes de sair e reforce a hidratação ao voltar." },
+  { name: "Caminhada", icon: "🚶", hydration: "Leve uma garrafinha, principalmente em dias quentes." },
+  { name: "Bicicleta", icon: "🚴", hydration: "Em pedal longo, hidrate-se em pequenos goles durante o trajeto." },
+  { name: "Montaria", icon: "🐎", hydration: "Atividade também exige postura, core e hidratação." },
+  { name: "Futebol", icon: "⚽", hydration: "Intercale água nos intervalos e evite treinar em jejum pesado." },
+  { name: "Natação", icon: "🏊", hydration: "Mesmo na água, o corpo perde líquido. Hidrate-se depois." },
+  { name: "Trilha", icon: "🥾", hydration: "Leve água extra e planeje o percurso com segurança." },
+  { name: "Funcional ao ar livre", icon: "💪", hydration: "Faça aquecimento leve e hidrate-se antes da parte intensa." }
+];
+
+function ExternalActivitySection({
+  form,
+  setForm,
+  activities,
+  onSubmit,
+  onDelete
+}: {
+  form: { type: string; duration: string; distance: string; intensity: string; caption: string };
+  setForm: Dispatch<SetStateAction<{ type: string; duration: string; distance: string; intensity: string; caption: string }>>;
+  activities: ExternalActivity[];
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onDelete: (id: string) => void;
+}) {
+  const selected = externalActivityTypes.find((item) => item.name === form.type) || externalActivityTypes[0];
+
+  return (
+    <section className="external-activity-card card">
+      <div className="external-head">
+        <div>
+          <span className="eyebrow">Atividades externas</span>
+          <h2>Poste treinos fora da academia</h2>
+          <p className="muted">Corrida, bicicleta, montaria, caminhada e outras atividades também contam para sua evolução.</p>
+        </div>
+        <div className="external-icon">{selected.icon}</div>
+      </div>
+
+      <div className="external-type-grid">
+        {externalActivityTypes.map((activity) => (
+          <button
+            type="button"
+            key={activity.name}
+            className={`external-type ${form.type === activity.name ? "active" : ""}`}
+            onClick={() => setForm((value) => ({ ...value, type: activity.name }))}
+          >
+            <span>{activity.icon}</span>
+            <b>{activity.name}</b>
+          </button>
+        ))}
+      </div>
+
+      <div className="hydration-strip external-hydration">
+        <Droplets color="var(--orange)" />
+        <div>
+          <strong>Hidrate-se nessa atividade</strong>
+          <small>{selected.hydration}</small>
+        </div>
+      </div>
+
+      <form className="external-form" onSubmit={onSubmit}>
+        <label>
+          <span>Duração</span>
+          <input className="field" value={form.duration} onChange={(event) => setForm((value) => ({ ...value, duration: event.target.value }))} placeholder="Ex: 30 min" />
+        </label>
+        <label>
+          <span>Distância</span>
+          <input className="field" value={form.distance} onChange={(event) => setForm((value) => ({ ...value, distance: event.target.value }))} placeholder="Ex: 5 km" />
+        </label>
+        <label>
+          <span>Intensidade</span>
+          <select className="select-field" value={form.intensity} onChange={(event) => setForm((value) => ({ ...value, intensity: event.target.value }))}>
+            <option>Leve</option>
+            <option>Moderada</option>
+            <option>Intensa</option>
+          </select>
+        </label>
+        <label className="external-caption">
+          <span>Legenda para o feed</span>
+          <textarea className="field" value={form.caption} onChange={(event) => setForm((value) => ({ ...value, caption: event.target.value }))} placeholder="Conte como foi sua atividade..." />
+        </label>
+        <button className="primary-btn full" type="submit">Registrar e postar atividade</button>
+      </form>
+
+      <div className="external-history">
+        <div className="external-history-title">
+          <strong>Histórico fora da academia</strong>
+          <small>{activities.length} registro(s)</small>
+        </div>
+        {activities.length === 0 && <p className="muted empty-state">Nenhuma atividade externa registrada ainda. Poste uma corrida, pedal ou caminhada hoje.</p>}
+        {activities.map((activity) => (
+          <article className="external-history-item" key={activity.id}>
+            <div className="external-history-icon">{externalActivityTypes.find((item) => item.name === activity.type)?.icon || "🔥"}</div>
+            <div>
+              <strong>{activity.type}</strong>
+              <span>{activity.duration} • {activity.distance} • {activity.intensity}</span>
+              <p>{activity.caption}</p>
+              <small>{new Date(activity.date).toLocaleDateString("pt-BR")}</small>
+            </div>
+            <button type="button" className="tiny-btn" onClick={() => onDelete(activity.id)}>Excluir</button>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ExerciseEquipmentCard({ index, exercise, done, onDone, onInstructions }: { index: number; exercise: Exercise; done: boolean; onDone: () => void; onInstructions: () => void }) {
   return (
-    <article className="exercise-card">
+    <article className={`exercise-card ${exercise.image ? "with-photo" : ""}`}>
       <EquipmentIllustration exercise={exercise} />
       <div className="exercise-content">
         <div className="exercise-top">
@@ -180,7 +344,7 @@ function ExerciseEquipmentCard({ index, exercise, done, onDone, onInstructions }
         </div>
         <p className="muted" style={{ fontSize: 13, lineHeight: 1.45 }}>{exercise.orientation}</p>
         <div className="equipment-steps">
-          <small>Como usar: ajuste o equipamento, mantenha postura firme e execute com controle.</small>
+          <small>{exercise.image ? "Imagem real incluída: toque em Ver instruções para ampliar o guia de início, execução e músculos trabalhados." : "Como usar: ajuste o equipamento, mantenha postura firme e execute com controle."}</small>
         </div>
         <div className="exercise-actions">
           <button className="tiny-btn" onClick={onInstructions}>Ver instruções</button>
@@ -201,6 +365,7 @@ function ExerciseInstructionModal({ exercise, onClose }: { exercise: Exercise; o
           <button className="icon-button" onClick={onClose}><X size={18} /></button>
         </div>
         <EquipmentIllustration exercise={exercise} large />
+        {exercise.image && <p className="image-helper">Guia visual com posição inicial, execução e músculos trabalhados.</p>}
         <div className="exercise-tags" style={{ marginTop: 14 }}>
           <span className="tag orange-tag">{exercise.equipment}</span>
           <span className="tag">{exercise.muscle}</span>
@@ -229,6 +394,16 @@ function ExerciseInstructionModal({ exercise, onClose }: { exercise: Exercise; o
 
 function EquipmentIllustration({ exercise, large = false }: { exercise: Exercise; large?: boolean }) {
   const kind = getEquipmentKind(exercise.equipment, exercise.name);
+
+  if (exercise.image) {
+    return (
+      <div className={`equipment-img equipment-photo ${large ? "equipment-large" : ""}`} aria-label={exercise.imageAlt || `Imagem do equipamento: ${exercise.equipment}`}>
+        <img src={exercise.image} alt={exercise.imageAlt || `Como executar ${exercise.name}`} loading="lazy" />
+        <span>{exercise.equipment}</span>
+      </div>
+    );
+  }
+
   return (
     <div className={`equipment-img equipment-${kind} ${large ? "equipment-large" : ""}`} aria-label={`Imagem ilustrativa do equipamento: ${exercise.equipment}`}>
       <EquipmentSvg kind={kind} />
