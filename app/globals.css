@@ -1374,3 +1374,129 @@ textarea.field { padding: 12px 14px; min-height: 94px; resize: vertical; }
   .external-history-item { grid-template-columns: 40px 1fr; }
   .external-history-item .tiny-btn { grid-column: 2; width: max-content; }
 }
+
+
+/* SUPREMA FIT v7 - botoes de mensagens e notificacoes mais visiveis */
+.mobile-header {
+  grid-template-columns: 44px minmax(138px, 1fr) auto;
+  column-gap: 8px;
+}
+.header-actions {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+.header-action-button {
+  position: relative;
+  min-width: 58px;
+  height: 38px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 13px;
+  color: white;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.header-action-button svg {
+  color: var(--orange);
+  flex: 0 0 auto;
+}
+.header-action-button.alert-action {
+  border-color: rgba(255,106,0,0.35);
+  background: linear-gradient(135deg, rgba(255,106,0,0.22), rgba(255,255,255,0.035));
+}
+.header-count {
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--orange);
+  color: white;
+  font-size: 9px;
+  line-height: 1;
+  border: 1px solid rgba(13,14,17,0.85);
+}
+@media (max-width: 405px) {
+  .mobile-header {
+    grid-template-columns: 42px minmax(124px, 1fr) auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    column-gap: 5px;
+  }
+  .brand-type { font-size: 17px; }
+  .logo-image { width: 32px; height: 32px; }
+  .header-actions { gap: 4px; }
+  .header-action-button {
+    min-width: 45px;
+    height: 36px;
+    padding: 0 5px;
+  }
+  .header-action-button span { display: none; }
+}
+
+/* SUPREMA FIT v8 - conexoes, mensagens e privacidade */
+.brand-type.brand-inline { flex-direction: row; align-items: baseline; gap: 5px; line-height: 1; letter-spacing: -0.06em; }
+.media-card { border: 0; width: calc(100% - 24px); color: inherit; text-align: left; display: block; cursor: pointer; }
+.story { display: block; cursor: pointer; }
+.story:active .story-ring, .message-row:active, .nav-item:active, .quick-card:active { transform: scale(0.98); }
+.social-connection-hero { padding: 16px; display: grid; gap: 12px; background: radial-gradient(circle at top right, rgba(255,106,0,0.22), transparent 14rem), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)), var(--card); }
+.social-connection-hero h2 { margin: 4px 0 6px; letter-spacing: -0.04em; }
+.social-connection-hero p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.privacy-note { width: max-content; max-width: 100%; display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 900; background: rgba(255,106,0,0.14); border: 1px solid rgba(255,106,0,0.25); }
+.message-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin: 12px 0; }
+.message-tabs button { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.035); color: var(--muted); border-radius: 15px; min-height: 44px; padding: 8px 7px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-size: 11px; font-weight: 900; }
+.message-tabs button.active { color: #fff; border-color: rgba(255,106,0,0.45); background: linear-gradient(135deg, rgba(255,106,0,0.24), rgba(255,255,255,0.035)); }
+.search-box { display: flex; align-items: center; gap: 8px; min-height: 45px; padding: 0 12px; margin-bottom: 12px; border-radius: 15px; color: var(--muted); background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.08); }
+.search-box input { flex: 1; border: 0; outline: 0; color: #fff; background: transparent; min-width: 0; }
+.search-box input::placeholder { color: var(--muted-2); }
+.message-layout { display: grid; gap: 12px; }
+.message-list-card { padding: 8px; display: grid; gap: 8px; }
+.message-row { display: grid; grid-template-columns: 46px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 18px; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.06); }
+.message-row.active { border-color: rgba(255,106,0,0.33); background: rgba(255,106,0,0.08); }
+.photo-avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 1000; background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent), linear-gradient(135deg, var(--orange), #7b2600 55%, #20242d); border: 2px solid rgba(255,106,0,0.42); box-shadow: 0 9px 28px rgba(255,106,0,0.16); }
+.photo-avatar.big { width: 54px; height: 54px; font-size: 18px; }
+.message-row-main { border: 0; background: transparent; color: inherit; text-align: left; padding: 0; min-width: 0; cursor: pointer; }
+.message-name-line, .message-handle-line, .message-preview { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.message-name-line { justify-content: space-between; }
+.message-name-line strong { font-size: 14px; }
+.message-name-line small { color: var(--muted-2); font-size: 10px; flex: 0 0 auto; }
+.message-handle-line { color: var(--orange-3); font-size: 11px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.message-preview { color: var(--muted); font-size: 12px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.message-row-actions { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; }
+.tiny-btn.orange { background: rgba(255,106,0,0.14); border-color: rgba(255,106,0,0.34); color: var(--orange-3); }
+.tiny-btn.done, .success-action { border-color: rgba(51,209,122,0.3) !important; color: var(--green) !important; background: rgba(51,209,122,0.08) !important; }
+.chat-preview-card { padding: 14px; }
+.chat-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.chat-head h3 { margin: 0; }
+.chat-head p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+.chat-bubble { width: max-content; max-width: 88%; padding: 10px 12px; border-radius: 16px; margin: 8px 0; font-size: 13px; line-height: 1.38; }
+.chat-bubble.incoming { background: rgba(255,255,255,0.07); color: #f1f3f7; }
+.chat-bubble.outgoing { margin-left: auto; background: linear-gradient(135deg, var(--orange), #ff8b2a); color: #fff; font-weight: 800; }
+.empty-state { color: var(--muted); text-align: center; padding: 18px 8px; margin: 0; }
+.pending-status { background: rgba(255,198,89,0.13) !important; color: #ffcc6e !important; }
+.settings-row-button { width: 100%; border: 0; background: transparent; color: inherit; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; }
+.settings-row-button span:first-child { display: inline-flex; align-items: center; gap: 9px; font-weight: 850; }
+.muted-status { color: var(--muted); font-size: 12px; font-weight: 900; }
+.privacy-info-card { margin-top: 14px; padding: 12px; display: flex; gap: 10px; border-radius: 16px; background: rgba(255,106,0,0.08); border: 1px solid rgba(255,106,0,0.18); }
+.privacy-info-card p { margin: 0; color: #f0f1f5; font-size: 13px; line-height: 1.42; }
+.back-link { width: max-content; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 12px; color: var(--orange); font-weight: 900; font-size: 13px; }
+.public-profile-card { margin-bottom: 14px; }
+.profile-badge-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.profile-action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.profile-action-grid .primary-btn, .profile-action-grid .secondary-btn { justify-content: center; min-height: 44px; }
+@media (max-width: 390px) { .message-row { grid-template-columns: 42px 1fr; } .message-row-actions { grid-column: 2; flex-direction: row; justify-content: flex-start; align-items: center; } .photo-avatar { width: 42px; height: 42px; } .message-tabs button { font-size: 10px; padding: 6px 4px; } .profile-action-grid { grid-template-columns: 1fr; } }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Droplets, Flame, Plus, ShoppingBag, Trophy, Zap } from "lucide-react";
+import { Droplets, Flame, Plus, ShoppingBag, Trophy, Users, Zap } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { FeedCard, Post } from "../components/FeedCard";
 import { MobileHeader } from "../components/MobileHeader";
@@ -61,9 +61,9 @@ const posts: Post[] = [
 ];
 
 const champions = [
-  { name: "Ana Paula", streak: "18 dias", initials: "AP" },
-  { name: "Marcos Silva", streak: "14 dias", initials: "MS" },
-  { name: "João Pedro", streak: "12 dias", initials: "JP" }
+  { name: "Ana Paula", streak: "18 dias", initials: "AP", href: "/alunos/ana-paula" },
+  { name: "Marcos Silva", streak: "14 dias", initials: "MS", href: "/alunos/marcos-silva" },
+  { name: "João Pedro", streak: "12 dias", initials: "JP", href: "/perfil" }
 ];
 
 export default function HomePage() {
@@ -81,7 +81,7 @@ export default function HomePage() {
             </div>
             <div className="champion-scroll">
               {champions.map((person, index) => (
-                <Link href="/perfil" className="champion-pill" key={person.name}>
+                <Link href={person.href} className="champion-pill" key={person.name}>
                   <span className="champion-rank">#{index + 1}</span>
                   <span className="avatar small-avatar">{person.initials}</span>
                   <span className="champion-text">
@@ -98,6 +98,7 @@ export default function HomePage() {
             <Link href="/loja" className="quick-card"><ShoppingBag size={18} />SUPREMA POWER</Link>
             <Link href="/treinos" className="quick-card"><Zap size={18} />Treino inteligente</Link>
             <Link href="/notificacoes" className="quick-card"><Droplets size={18} />Beba água hoje</Link>
+            <Link href="/conexoes" className="quick-card"><Users size={18} />Conectar alunos</Link>
           </section>
 
           <div className="alert-card hydration-alert">

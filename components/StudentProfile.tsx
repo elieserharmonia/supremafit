@@ -1,0 +1,9 @@
+"use client";
+import Link from "next/link";
+import { ArrowLeft, Lock, MessageCircle, ShieldCheck, Trophy, UserPlus } from "lucide-react";
+import { findSocialUser } from "../lib/social";
+import { SocialConnectButton } from "./SocialConnectButton";
+export function StudentProfile({ slug }: { slug: string }) {
+  const user = findSocialUser(slug);
+  return <div className="content-pad"><Link href="/mensagens" className="back-link"><ArrowLeft size={17} /> Voltar para mensagens</Link><section className="profile-hero instagram-profile public-profile-card"><div className="profile-row"><div className="avatar profile-avatar">{user.initials}</div><div style={{ flex: 1 }}><h1 style={{ margin: 0 }}>{user.name}</h1><p className="profile-username">{user.handle}</p><div className="profile-badge-row"><span className="badge-soft"><Trophy size={14} /> {user.streak} dias</span><span className="badge-soft">{user.goal}</span><span className="badge-soft">{user.privacy === "private" ? <Lock size={14} /> : <ShieldCheck size={14} />} {user.privacy === "private" ? "Privada" : "Pública"}</span></div></div></div><div className="bio-box"><strong>BIO</strong><p>{user.bio}</p></div><div className="profile-action-grid"><SocialConnectButton userId={user.id} privacy={user.privacy} initialStatus={user.status} /><Link href="/mensagens" className="secondary-btn full"><MessageCircle size={16} /> Mensagem</Link></div></section><section className="card finance-card"><h2 style={{ marginTop: 0 }}>Condição de conexão</h2><p className="muted">{user.privacy === "private" ? "Esta conta é privada. Para ver tudo e trocar mensagens, envie uma solicitação e aguarde aprovação." : "Esta conta é pública. Você pode seguir e interagir com os posts do aluno."}</p><div className="history-row"><span><UserPlus size={18} color="var(--orange)" /> Ação recomendada</span><span className="status">{user.privacy === "private" ? "Solicitar" : "Seguir"}</span></div></section></div>;
+}

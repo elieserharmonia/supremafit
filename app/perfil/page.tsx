@@ -1,4 +1,5 @@
-import { Award, Dumbbell, Flame, Gauge, PenLine, Zap } from "lucide-react";
+import Link from "next/link";
+import { Award, Dumbbell, Flame, Gauge, PenLine, Users, Zap } from "lucide-react";
 import { BottomNav } from "../../components/BottomNav";
 import { FeedCard } from "../../components/FeedCard";
 import { MobileHeader } from "../../components/MobileHeader";
@@ -16,7 +17,7 @@ export default function PerfilPage() {
               <div style={{ flex: 1 }}>
                 <div className="profile-name-row">
                   <h1 style={{ margin: 0 }}>João Pedro</h1>
-                  <button className="tiny-icon-btn"><PenLine size={15} /></button>
+                  <Link className="tiny-icon-btn" href="/configuracoes" aria-label="Editar perfil"><PenLine size={15} /></Link>
                 </div>
                 <p className="profile-username">@joaopedro.fit</p>
                 <span className="badge-soft"><Award size={14} /> Nível Bronze</span>
@@ -42,8 +43,17 @@ export default function PerfilPage() {
             <label className="field-label" style={{ marginTop: 12 }}>Link do Instagram<input className="field" defaultValue="https://instagram.com/joaopedro.fit" /></label>
             <label className="field-label" style={{ marginTop: 12 }}>Link do Facebook<input className="field" defaultValue="https://facebook.com/joaopedro" /></label>
             <label className="field-label" style={{ marginTop: 12 }}>Outro link<input className="field" placeholder="Site, WhatsApp, TikTok, loja ou portfólio" /></label>
-            <button className="primary-btn full" style={{ marginTop: 14 }}>Salvar bio e links</button>
+            <Link className="primary-btn full" style={{ marginTop: 14 }} href="/configuracoes">Salvar bio e links</Link>
             <div style={{ marginTop: 10 }}><LogoutButton /></div>
+          </section>
+
+          <section className="card finance-card">
+            <h2 style={{ marginTop: 0 }}>Conexões</h2>
+            <p className="muted">Escolha se sua conta será pública ou privada, siga alunos e aprove solicitações de amizade.</p>
+            <div className="profile-action-grid">
+              <Link className="primary-btn full" href="/conexoes"><Users size={16} /> Encontrar alunos</Link>
+              <Link className="secondary-btn full" href="/mensagens">Mensagens</Link>
+            </div>
           </section>
 
           <div className="metric-grid">

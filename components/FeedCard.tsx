@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Bookmark, Heart, MessageCircle, MoreHorizontal, Play, Send, Share2, X } from "lucide-react";
 import { generateBrandedShareImage } from "../lib/share";
 
@@ -16,6 +17,14 @@ export type Post = {
   mediaTitle?: string;
   mediaSubtitle?: string;
   mediaVariant?: "gym" | "selfie" | "food" | "cardio" | "random" | "progress";
+};
+
+const profileSlugs: Record<string, string> = {
+  "Marcos Silva": "marcos-silva",
+  "Julia Bianchi": "julia-bianchi",
+  "Coach Leo": "coach-leo",
+  "Ana Paula": "ana-paula",
+  "João Pedro": "joao-pedro"
 };
 
 const defaultComments = [
@@ -40,7 +49,7 @@ export function FeedCard({ post }: { post: Post }) {
   return (
     <article className="card feed-card" id={`post-${post.id}`}>
       <div className="feed-head">
-        <div className="avatar">{post.initials}</div>
+        <Link href={`/alunos/${profileSlugs[post.author] || "marcos-silva"}`} className="avatar" aria-label={`Abrir perfil de ${post.author}`}>{post.initials}</Link>
         <div className="feed-meta">
           <strong>{post.author}</strong>
           <span>{post.time} · {post.category}</span>
@@ -56,14 +65,14 @@ export function FeedCard({ post }: { post: Post }) {
           )}
         </div>
       </div>
-      <div className={`media-card media-${post.mediaVariant || "gym"}`}>
+      <button type="button" className={`media-card media-${post.mediaVariant || "gym"}`} onClick={() => setCommentsOpen(true)} aria-label={`Abrir post de ${post.author}`}>
         <div className="fake-photo-person" />
         <div className="play-badge"><Play size={24} fill="white" /></div>
         <div className="media-label">
           <b>{post.mediaTitle || post.category}</b>
           <small>{post.mediaSubtitle || "SUPREMA FIT ACADEMIA"}</small>
         </div>
-      </div>
+      </button>
       <div className="feed-body">
         <p className="caption">{post.caption}</p>
         <div className="post-actions">
