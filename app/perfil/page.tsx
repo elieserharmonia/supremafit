@@ -2,6 +2,7 @@ import { Award, Dumbbell, Flame, Gauge, PenLine, Zap } from "lucide-react";
 import { BottomNav } from "../../components/BottomNav";
 import { FeedCard } from "../../components/FeedCard";
 import { MobileHeader } from "../../components/MobileHeader";
+import { LogoutButton } from "../../components/LogoutButton";
 
 export default function PerfilPage() {
   return (
@@ -42,6 +43,7 @@ export default function PerfilPage() {
             <label className="field-label" style={{ marginTop: 12 }}>Link do Facebook<input className="field" defaultValue="https://facebook.com/joaopedro" /></label>
             <label className="field-label" style={{ marginTop: 12 }}>Outro link<input className="field" placeholder="Site, WhatsApp, TikTok, loja ou portfólio" /></label>
             <button className="primary-btn full" style={{ marginTop: 14 }}>Salvar bio e links</button>
+            <div style={{ marginTop: 10 }}><LogoutButton /></div>
           </section>
 
           <div className="metric-grid">

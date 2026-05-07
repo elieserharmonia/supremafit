@@ -1,26 +1,34 @@
 # SUPREMA FIT App
 
-App MVP da SUPREMA FIT ACADEMIA em Next.js.
+App social fitness da SUPREMA FIT ACADEMIA, criado em Next.js para deploy na Vercel.
 
-## Atualização v3
+## O que existe nesta versão
 
-- Nome da marca ajustado com **SUPREMA FIT** na mesma linha.
-- Botão de postagem mantido no topo superior esquerdo.
-- Destaques de alunos constantes agora aparecem na horizontal logo abaixo dos stories, com texto sutil dourado **Destaque da Semana**.
-- BIO estilo Instagram com ícones sociais de Instagram, Facebook e WhatsApp.
-- Mais botões e ícones clicáveis: notificações, configurações, menu de post, abas de treino, calendário, nutrição, evolução e mensagens.
-- Aba Treinos com ilustrações diferentes por tipo de equipamento e instruções de uso.
-- Arquivo `EQUIPAMENTOS-PARA-FOTOS.md` com lista de fotos reais sugeridas para substituir as ilustrações.
+- Login de teste local
+- Cadastro de teste
+- Feed social
+- Curtir, comentar, compartilhar e salvar
+- Marca d'água para compartilhamento externo
+- Stories
+- Destaque da Semana
+- Treinos com orientações, aquecimento, hidratação e sugestões
+- Perfil com BIO estilo Instagram e ícones sociais
+- Financeiro
+- Loja SUPREMA POWER
+- Dashboard desktop
+- Layout mobile-first responsivo
 
-## Como publicar
+## Login de teste
 
-1. Descompacte o ZIP.
-2. Suba os arquivos na raiz do repositório GitHub.
-3. Na Vercel, faça Redeploy.
+- Aluno: `aluno@supremafit.com`
+- Personal: `personal@supremafit.com`
+- Senha: `123456`
 
-Estrutura correta:
+## Subir no GitHub
 
-```txt
+Envie os arquivos descompactados diretamente na raiz do repositório:
+
+```text
 app/
 components/
 lib/
@@ -30,4 +38,13 @@ next.config.mjs
 tsconfig.json
 ```
 
-Não suba a pasta inteira dentro de outra pasta. Os arquivos devem ficar na raiz do repositório.
+Depois faça o deploy/redeploy pela Vercel.
+
+## Próximos passos para app real
+
+- Supabase Auth
+- Banco de dados Supabase/Postgres
+- Upload real de fotos/vídeos
+- Pagamentos com Mercado Pago
+- Notificações push
+- Bloqueio de treinos premium
