@@ -1,10 +1,15 @@
-import { Bell, Settings } from "lucide-react";
+import Link from "next/link";
+import { Bell, Plus, Settings } from "lucide-react";
 import { AppLogo } from "./AppLogo";
 
-export function MobileHeader({ right = "bell" }: { right?: "bell" | "settings" | "none" }) {
+export function MobileHeader({ right = "bell", postAction = true }: { right?: "bell" | "settings" | "none"; postAction?: boolean }) {
   return (
     <header className="mobile-header">
-      <span />
+      {postAction ? (
+        <Link className="top-post-button" href="/postar" aria-label="Criar novo post">
+          <Plus size={19} />
+        </Link>
+      ) : <span />}
       <AppLogo />
       {right === "bell" && (
         <button className="icon-button" aria-label="Notificações">

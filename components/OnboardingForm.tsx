@@ -45,7 +45,7 @@ export function OnboardingForm() {
         <label className="field-label">Peso<input className="field" value={profile.weight} onChange={(e) => update("weight", e.target.value)} placeholder="82 kg" /></label>
         <label className="field-label">Objetivo principal
           <select className="select-field" value={profile.objective} onChange={(e) => update("objective", e.target.value)}>
-            {['Hipertrofia','Emagrecimento','Condicionamento','Saúde','Força','Qualidade de vida'].map((item) => <option key={item}>{item}</option>)}
+            {['Hipertrofia','Exercício e saúde','Emagrecimento','Perder peso urgente','Condicionamento','Saúde','Força','Qualidade de vida'].map((item) => <option key={item}>{item}</option>)}
           </select>
         </label>
         <label className="field-label">Frequência semanal
@@ -83,6 +83,7 @@ export function OnboardingForm() {
       {plan.length > 0 && (
         <div className="suggested-plan">
           <h3>Plano sugerido para {profile.objective}</h3>
+          {(profile.objective === "Emagrecimento" || profile.objective === "Perder peso urgente") && <p className="muted">Sugestão alimentar educativa: priorize proteína magra, legumes, frutas, água e acompanhamento com nutricionista para estratégia segura.</p>}
           {profile.restriction === "Sim" && <p className="orange">Atenção: valide os exercícios com um profissional por causa da restrição informada.</p>}
           <ul>
             {plan.map((item) => <li key={item}>{item}</li>)}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AppLogo } from "./AppLogo";
-import { BarChart3, CalendarDays, CreditCard, Dumbbell, Home, MessageCircle, Settings, Trophy, Users, Utensils } from "lucide-react";
+import { BarChart3, CalendarDays, CreditCard, Dumbbell, Home, MessageCircle, Settings, ShoppingBag, Trophy, Users, Utensils } from "lucide-react";
 
 const menu = [
   { href: "/dashboard", label: "Início", icon: Home, active: true },
@@ -8,6 +8,7 @@ const menu = [
   { href: "/dashboard", label: "Calendário", icon: CalendarDays },
   { href: "/dashboard", label: "Nutrição", icon: Utensils },
   { href: "/financeiro", label: "Financeiro", icon: CreditCard },
+  { href: "/loja", label: "SUPREMA POWER", icon: ShoppingBag },
   { href: "/dashboard", label: "Evolução", icon: BarChart3 },
   { href: "/", label: "Comunidade", icon: Users },
   { href: "/dashboard", label: "Mensagens", icon: MessageCircle },

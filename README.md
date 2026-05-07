@@ -1,31 +1,27 @@
 # SUPREMA FIT App
 
-App social fitness mobile-first para a academia SUPREMA FIT, com feed, treinos inteligentes, financeiro, perfil, onboarding e dashboard.
+Projeto Next.js do app SUPREMA FIT ACADEMIA, pronto para subir no GitHub e publicar na Vercel.
 
-## Como subir para o GitHub pelo navegador
+## Novidades desta versão
 
-1. Crie um repositório no GitHub, exemplo: `suprema-fit-app`.
-2. Clique em **Add file > Upload files**.
-3. Envie todos os arquivos desta pasta descompactada.
-4. Clique em **Commit changes**.
+- Botão `+` de postar no topo esquerdo, na linha do nome do app.
+- Feed social para postar treinos, fotos aleatórias, evolução, alimentação e bastidores.
+- Ícones e menus com navegação clicável.
+- Aba Treinos com orientações, imagens ilustrativas dos equipamentos e instruções de uso.
+- Alertas de aquecimento e hidratação.
+- Sugestões inteligentes com base em objetivo, histórico e inatividade.
+- Perfil com BIO estilo Instagram e campos para links externos.
+- Destaque na home para alunos que treinam todos os dias.
+- Sugestões de treino e alimentação educativa para hipertrofia, saúde, condicionamento e emagrecimento.
+- Loja `SUPREMA POWER` para suplementos, vitaminas, camisetas e acessórios.
 
-## Como publicar na Vercel
+## Como publicar
 
-1. Entre em https://vercel.com.
-2. Clique em **Add New Project**.
-3. Importe o repositório do GitHub.
-4. Clique em **Deploy**.
-5. A Vercel gerará um endereço parecido com `suprema-fit-app.vercel.app`.
-
-## Rodas principais
-
-- `/` Feed social
-- `/treinos` Treinos inteligentes
-- `/financeiro` Pagamentos
-- `/perfil` Perfil do aluno
-- `/dashboard` Painel desktop
-- `/onboarding` Questionário inicial
+1. Envie todos os arquivos para a raiz do repositório GitHub.
+2. Na Vercel, importe o repositório.
+3. Framework: Next.js.
+4. Clique em Deploy.
 
 ## Observação
 
-Esta é uma versão MVP visual e funcional de front-end. Para produção real, ainda será necessário conectar banco de dados, login, pagamentos reais, notificações push e armazenamento de fotos/videos.
+Esta é uma versão MVP front-end. Para produção real, ainda será necessário conectar banco de dados, login, pagamentos, upload real de fotos/vídeos e notificações push.

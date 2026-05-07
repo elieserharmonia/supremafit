@@ -1,4 +1,4 @@
-import { Award, Dumbbell, Flame, Gauge, Zap } from "lucide-react";
+import { Award, Dumbbell, Flame, Gauge, Instagram, Link as LinkIcon, PenLine, Zap } from "lucide-react";
 import { BottomNav } from "../../components/BottomNav";
 import { FeedCard } from "../../components/FeedCard";
 import { MobileHeader } from "../../components/MobileHeader";
@@ -9,17 +9,39 @@ export default function PerfilPage() {
       <section className="mobile-page">
         <MobileHeader right="settings" />
         <div className="content-pad">
-          <section className="profile-hero">
+          <section className="profile-hero instagram-profile">
             <div className="profile-row">
               <div className="avatar profile-avatar">JP</div>
               <div style={{ flex: 1 }}>
-                <h1 style={{ margin: 0 }}>João Pedro</h1>
-                <p style={{ margin: "6px 0", lineHeight: 1.35 }}>Foco, disciplina e evolução todos os dias.</p>
+                <div className="profile-name-row">
+                  <h1 style={{ margin: 0 }}>João Pedro</h1>
+                  <button className="tiny-icon-btn"><PenLine size={15} /></button>
+                </div>
+                <p className="profile-username">@joaopedro.fit</p>
                 <span className="badge-soft"><Award size={14} /> Nível Bronze</span>
                 <div className="xp-bar"><span style={{ width: "62%" }} /></div>
                 <small className="muted">620 / 1.000 XP</small>
               </div>
             </div>
+
+            <div className="bio-box">
+              <strong>BIO</strong>
+              <p>Foco, disciplina e evolução todos os dias. Treinando na SUPREMA FIT ACADEMIA.</p>
+              <div className="bio-links">
+                <a href="https://instagram.com" target="_blank"><Instagram size={15} /> Instagram</a>
+                <a href="https://facebook.com" target="_blank"><LinkIcon size={15} /> Facebook</a>
+                <a href="https://wa.me/5500000000000" target="_blank"><LinkIcon size={15} /> WhatsApp</a>
+              </div>
+            </div>
+          </section>
+
+          <section className="card finance-card edit-bio-card">
+            <h2 style={{ marginTop: 0 }}>Editar perfil</h2>
+            <label className="field-label">Bio<textarea className="field" defaultValue="Foco, disciplina e evolução todos os dias. Treinando na SUPREMA FIT ACADEMIA." /></label>
+            <label className="field-label" style={{ marginTop: 12 }}>Link do Instagram<input className="field" defaultValue="https://instagram.com/joaopedro.fit" /></label>
+            <label className="field-label" style={{ marginTop: 12 }}>Link do Facebook<input className="field" defaultValue="https://facebook.com/joaopedro" /></label>
+            <label className="field-label" style={{ marginTop: 12 }}>Outro link<input className="field" placeholder="Site, WhatsApp, TikTok, loja ou portfólio" /></label>
+            <button className="primary-btn full" style={{ marginTop: 14 }}>Salvar bio e links</button>
           </section>
 
           <div className="metric-grid">
@@ -36,7 +58,7 @@ export default function PerfilPage() {
           </section>
 
           <div className="section-title-row"><h2>Posts recentes</h2></div>
-          <FeedCard post={{ id: 'p1', author: 'João Pedro', initials: 'JP', time: 'hoje', category: 'Treino de Peito', caption: 'Mais um treino concluído na SUPREMA FIT. Evolução guiada.', likes: 64, comments: 9 }} />
+          <FeedCard post={{ id: 'p1', author: 'João Pedro', initials: 'JP', time: 'hoje', category: 'Treino de Peito', caption: 'Mais um treino concluído na SUPREMA FIT. Evolução guiada.', likes: 64, comments: 9, mediaVariant: 'progress', mediaTitle: 'Post do perfil' }} />
         </div>
         <BottomNav />
       </section>

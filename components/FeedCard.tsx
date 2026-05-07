@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Bookmark, Heart, MessageCircle, MoreHorizontal, Play, Send, Share2, X } from "lucide-react";
 import { generateBrandedShareImage } from "../lib/share";
 
-type Post = {
+export type Post = {
   id: string;
   author: string;
   initials: string;
@@ -13,6 +13,9 @@ type Post = {
   caption: string;
   likes: number;
   comments: number;
+  mediaTitle?: string;
+  mediaSubtitle?: string;
+  mediaVariant?: "gym" | "selfie" | "food" | "cardio" | "random" | "progress";
 };
 
 const defaultComments = [
@@ -24,6 +27,7 @@ export function FeedCard({ post }: { post: Post }) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [likes, setLikes] = useState(post.likes);
+  const [commentsCount, setCommentsCount] = useState(post.comments);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
 
@@ -33,7 +37,7 @@ export function FeedCard({ post }: { post: Post }) {
   }
 
   return (
-    <article className="card feed-card" id="feed">
+    <article className="card feed-card" id={`post-${post.id}`}>
       <div className="feed-head">
         <div className="avatar">{post.initials}</div>
         <div className="feed-meta">
@@ -42,31 +46,32 @@ export function FeedCard({ post }: { post: Post }) {
         </div>
         <button className="action-button" aria-label="Mais opções"><MoreHorizontal size={18} /></button>
       </div>
-      <div className="media-card">
+      <div className={`media-card media-${post.mediaVariant || "gym"}`}>
+        <div className="fake-photo-person" />
         <div className="play-badge"><Play size={24} fill="white" /></div>
         <div className="media-label">
-          <b>{post.category}</b>
-          <small>SUPREMA FIT ACADEMIA</small>
+          <b>{post.mediaTitle || post.category}</b>
+          <small>{post.mediaSubtitle || "SUPREMA FIT ACADEMIA"}</small>
         </div>
       </div>
       <div className="feed-body">
         <p className="caption">{post.caption}</p>
         <div className="post-actions">
           <div className="action-group">
-            <button onClick={toggleLike} className={`action-button ${liked ? "active" : ""}`}><Heart size={19} fill={liked ? "currentColor" : "none"} />{likes}</button>
-            <button onClick={() => setCommentsOpen(true)} className="action-button"><MessageCircle size={19} />{post.comments}</button>
-            <button onClick={() => setShareOpen(true)} className="action-button"><Share2 size={19} /></button>
+            <button type="button" onClick={toggleLike} className={`action-button ${liked ? "active" : ""}`}><Heart size={19} fill={liked ? "currentColor" : "none"} />{likes}</button>
+            <button type="button" onClick={() => setCommentsOpen(true)} className="action-button"><MessageCircle size={19} />{commentsCount}</button>
+            <button type="button" onClick={() => setShareOpen(true)} className="action-button"><Share2 size={19} />Compartilhar</button>
           </div>
-          <button onClick={() => setSaved((v) => !v)} className={`action-button ${saved ? "active" : ""}`}><Bookmark size={19} fill={saved ? "currentColor" : "none"} /></button>
+          <button type="button" onClick={() => setSaved((v) => !v)} className={`action-button ${saved ? "active" : ""}`}><Bookmark size={19} fill={saved ? "currentColor" : "none"} /></button>
         </div>
       </div>
-      {commentsOpen && <CommentDrawer post={post} onClose={() => setCommentsOpen(false)} />}
+      {commentsOpen && <CommentDrawer post={post} onClose={() => setCommentsOpen(false)} onCommentAdded={() => setCommentsCount((value) => value + 1)} />}
       {shareOpen && <ShareModal post={post} onClose={() => setShareOpen(false)} />}
     </article>
   );
 }
 
-function CommentDrawer({ post, onClose }: { post: Post; onClose: () => void }) {
+function CommentDrawer({ post, onClose, onCommentAdded }: { post: Post; onClose: () => void; onCommentAdded: () => void }) {
   const [comments, setComments] = useState(defaultComments);
   const [value, setValue] = useState("");
 
@@ -74,6 +79,7 @@ function CommentDrawer({ post, onClose }: { post: Post; onClose: () => void }) {
     if (!value.trim()) return;
     setComments([{ name: "João Pedro", initials: "JP", text: value.trim(), time: "agora" }, ...comments]);
     setValue("");
+    onCommentAdded();
   }
 
   return (
@@ -120,12 +126,8 @@ function ShareModal({ post, onClose }: { post: Post; onClose: () => void }) {
       return;
     }
 
-    if (channel === "WhatsApp") {
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
-    }
-    if (channel === "Facebook") {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`, "_blank");
-    }
+    if (channel === "WhatsApp") window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    if (channel === "Facebook") window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`, "_blank");
     if (channel === "Instagram") {
       setStatus("Instagram não permite envio direto pela web. Baixe a imagem marcada e publique no Instagram.");
       return;

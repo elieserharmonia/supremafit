@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dumbbell, Home, PlusCircle, User, WalletCards } from "lucide-react";
+import { Dumbbell, Home, ShoppingBag, User, WalletCards } from "lucide-react";
 
 const items = [
   { href: "/", label: "Início", icon: Home },
   { href: "/treinos", label: "Treinos", icon: Dumbbell },
-  { href: "/postar", label: "Postar", icon: PlusCircle },
+  { href: "/loja", label: "Loja", icon: ShoppingBag },
   { href: "/financeiro", label: "Financeiro", icon: WalletCards },
   { href: "/perfil", label: "Perfil", icon: User }
 ];

@@ -256,7 +256,7 @@ export const workouts: Record<WorkoutCategory, WorkoutPlan> = {
 export function getRecommendedWorkout(profile?: StudentProfile | null, history: WorkoutCategory[] = []) {
   const last = history[history.length - 1];
   if (!last) {
-    if (profile?.objective === "Emagrecimento") return "Full Body" as WorkoutCategory;
+    if (profile?.objective === "Emagrecimento" || profile?.objective === "Perder peso urgente") return "Full Body" as WorkoutCategory;
     if (profile?.objective === "Condicionamento") return "Cardio" as WorkoutCategory;
     if (profile?.objective === "Saúde" || profile?.level === "Iniciante") return "Full Body" as WorkoutCategory;
     return "Peito" as WorkoutCategory;
@@ -271,7 +271,7 @@ export function getRecommendedWorkout(profile?: StudentProfile | null, history: 
     Abdômen: ["Peito", "Perna"],
     "Full Body": ["Cardio", "Peito"]
   };
-  if (profile?.objective === "Emagrecimento" && last !== "Cardio") return "Cardio" as WorkoutCategory;
+  if ((profile?.objective === "Emagrecimento" || profile?.objective === "Perder peso urgente") && last !== "Cardio") return "Cardio" as WorkoutCategory;
   return map[last]?.[0] ?? "Full Body";
 }
 
@@ -293,6 +293,9 @@ export function generateInitialTrainingPlan(profile: StudentProfile) {
 
   if (objective === "Hipertrofia" && frequency.includes("5")) {
     return ["Segunda: Peito", "Terça: Perna", "Quarta: Costas", "Quinta: Braço", "Sexta: Ombro + Abdômen"];
+  }
+  if (objective === "Perder peso urgente") {
+    return ["Dia 1: Full Body leve + Cardio moderado", "Dia 2: Perna + caminhada inclinada", "Dia 3: Superiores + Bike", "Dia 4: Cardio progressivo + Abdômen", "Dia 5: Full Body metabólico"];
   }
   if (objective === "Emagrecimento" && frequency.includes("3")) {
     return ["Dia 1: Full Body + Cardio", "Dia 2: Perna + Cardio", "Dia 3: Superiores + Cardio"];

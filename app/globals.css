@@ -599,3 +599,244 @@ textarea.field { padding: 12px 14px; min-height: 94px; resize: vertical; }
   .summary-grid { grid-template-columns: 1fr 1fr; }
   .progress-ring { grid-column: 1 / -1; justify-self: start; }
 }
+
+
+/* SUPREMA FIT v2 refinements */
+.top-post-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(135deg, var(--orange), #ff8d2d);
+  box-shadow: 0 12px 34px rgba(255,106,0,0.32);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.brand-type {
+  font-family: Impact, Haettenschweiler, "Arial Black", Inter, sans-serif;
+  letter-spacing: -0.025em;
+  filter: drop-shadow(0 0 16px rgba(255, 106, 0, 0.16));
+}
+.brand-type .fit {
+  text-shadow: 0 0 20px rgba(255, 106, 0, 0.38);
+}
+.daily-champions {
+  padding: 16px;
+  margin: 12px 0 14px;
+  background:
+    linear-gradient(135deg, rgba(255,106,0,0.18), transparent 55%),
+    #15171c;
+}
+.champion-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.champion-head h2 { margin: 4px 0 0; letter-spacing: -0.05em; }
+.champion-list { display: grid; gap: 10px; margin-top: 12px; }
+.champion-item { display: grid; grid-template-columns: 42px 42px 1fr; align-items: center; gap: 10px; }
+.champion-rank { font-weight: 1000; color: var(--orange); }
+.champion-item small { display: block; color: var(--muted); margin-top: 2px; }
+.home-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.quick-card {
+  min-height: 72px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  font-weight: 1000;
+  color: white;
+}
+.quick-card svg { color: var(--orange); }
+.quick-card.orange-card { background: linear-gradient(135deg, var(--orange), #ff8d2d); box-shadow: 0 14px 40px rgba(255,106,0,0.24); }
+.quick-card.orange-card svg { color: white; }
+.hydration-alert { margin: 12px 0; }
+.media-card.media-random { background: radial-gradient(circle at 26% 22%, rgba(255,255,255,0.14), transparent 9rem), linear-gradient(135deg, #1c2330, #101217 50%, #4b2508); }
+.media-card.media-food { background: radial-gradient(circle at 36% 32%, rgba(255,157,66,0.25), transparent 8rem), linear-gradient(135deg, #283425, #111318 55%, #4d2a08); }
+.media-card.media-cardio { background: radial-gradient(circle at 68% 26%, rgba(255,106,0,0.25), transparent 9rem), linear-gradient(135deg, #1f2937, #101217 55%, #321807); }
+.media-card.media-progress { background: radial-gradient(circle at 50% 25%, rgba(255,255,255,0.15), transparent 8rem), linear-gradient(135deg, #2e3340, #111318 52%, #572a06); }
+.fake-photo-person {
+  position: absolute;
+  right: 32px;
+  bottom: 52px;
+  width: 92px;
+  height: 118px;
+  opacity: .82;
+  z-index: 1;
+  filter: drop-shadow(0 20px 22px rgba(0,0,0,.45));
+}
+.fake-photo-person::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 34px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.72);
+}
+.fake-photo-person::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 16px;
+  width: 62px;
+  height: 84px;
+  border-radius: 34px 34px 18px 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,106,0,0.56));
+}
+.upload-zone {
+  min-height: 150px;
+  border: 1px dashed rgba(255,106,0,0.46);
+  background: rgba(255,106,0,0.08);
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 18px;
+  gap: 8px;
+  color: white;
+}
+.upload-zone small { color: var(--muted); max-width: 300px; }
+.upload-zone input { display: none; }
+.hydration-strip {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 14px;
+}
+.hydration-strip small { display: block; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.nutrition-card { padding: 16px; margin-bottom: 14px; }
+.nutrition-head { display: flex; gap: 12px; align-items: flex-start; }
+.nutrition-head p { margin: 4px 0 0; color: #e6e8ef; font-size: 14px; line-height: 1.45; }
+.nutrition-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.equipment-img {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.14), transparent 34px),
+    linear-gradient(135deg, #262b35, #0e1014 55%, #41220b);
+  color: rgba(255,255,255,0.66);
+  position: relative;
+  overflow: hidden;
+}
+.equipment-img svg {
+  width: 84px;
+  height: 76px;
+  fill: rgba(255,255,255,0.72);
+  stroke: rgba(255,255,255,0.78);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  position: relative;
+  z-index: 2;
+}
+.equipment-img .orange-stroke { stroke: var(--orange); fill: none; }
+.equipment-img span {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  z-index: 2;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+}
+.equipment-img::before { content: none; }
+.equipment-large { min-height: 220px; border-radius: 22px; }
+.equipment-large svg { width: 170px; height: 150px; }
+.equipment-cardio { background: linear-gradient(135deg, #273243, #0e1014 54%, #4a2408); }
+.equipment-cable { background: linear-gradient(135deg, #202735, #0e1014 54%, #4f2607); }
+.equipment-legs { background: linear-gradient(135deg, #332a20, #0e1014 54%, #5d2f0a); }
+.equipment-freeweight { background: linear-gradient(135deg, #2d3038, #0e1014 54%, #4c2206); }
+.equipment-mat { background: linear-gradient(135deg, #1f3330, #0e1014 54%, #3c2107); }
+.equipment-steps {
+  border-left: 3px solid var(--orange);
+  padding: 7px 9px;
+  border-radius: 0 12px 12px 0;
+  background: rgba(255,106,0,0.06);
+  color: var(--muted);
+  line-height: 1.35;
+}
+.instruction-box {
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.instruction-box ol { margin: 8px 0 0; padding-left: 20px; color: var(--muted); line-height: 1.55; }
+.instagram-profile .profile-row { align-items: flex-start; }
+.profile-name-row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.profile-username { color: var(--muted); margin: 4px 0 9px; }
+.tiny-icon-btn {
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+}
+.bio-box {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.bio-box p { margin: 6px 0 10px; line-height: 1.45; }
+.bio-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.bio-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: rgba(255,106,0,0.12);
+  color: var(--orange);
+  font-weight: 900;
+  font-size: 12px;
+  border: 1px solid rgba(255,106,0,0.24);
+}
+.edit-bio-card { background: #111318; }
+.store-hero {
+  padding: 22px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+  background:
+    radial-gradient(circle at top right, rgba(255,106,0,0.35), transparent 12rem),
+    linear-gradient(135deg, #191c22, #0f1116 58%, #3d1c06);
+  border: 1px solid rgba(255,106,0,0.18);
+  box-shadow: 0 22px 70px rgba(0,0,0,.27);
+}
+.store-hero h1 { margin: 4px 0; font-size: 38px; letter-spacing: -0.07em; line-height: .94; }
+.store-hero h1 span { color: var(--orange); }
+.store-hero p { color: #e7e8ee; line-height: 1.45; max-width: 580px; }
+.store-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.store-card {
+  padding: 13px;
+  border-radius: 22px;
+  background: #15171c;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.store-product-img {
+  height: 112px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,106,0,.22), rgba(255,255,255,.06)), #0f1116;
+  display: grid;
+  place-items: center;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.store-card h3 { margin: 9px 0 4px; letter-spacing: -0.03em; }
+.store-card small { color: var(--muted); }
+.store-price { display: block; font-size: 20px; margin: 10px 0; color: white; }
+@media (max-width: 380px) {
+  .store-grid, .home-quick-grid { grid-template-columns: 1fr; }
+  .champion-item { grid-template-columns: 34px 42px 1fr; }
+}
