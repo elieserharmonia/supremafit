@@ -13,7 +13,7 @@ export default function DashboardPage() {
         <div className="dashboard-top">
           <div className="search-field"><Search size={18} color="var(--muted)" /><input placeholder="Buscar treino, aluno, post..." /></div>
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <button className="icon-button"><Bell size={18} /><span className="badge">12</span></button>
+            <Link className="icon-button" href="/notificacoes"><Bell size={18} /><span className="badge">12</span></Link>
             <Link className="secondary-btn" href="/perfil">João Pedro</Link>
           </div>
         </div>

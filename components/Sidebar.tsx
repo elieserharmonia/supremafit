@@ -5,14 +5,14 @@ import { BarChart3, CalendarDays, CreditCard, Dumbbell, Home, MessageCircle, Set
 const menu = [
   { href: "/dashboard", label: "Início", icon: Home, active: true },
   { href: "/treinos", label: "Treinos", icon: Dumbbell },
-  { href: "/dashboard", label: "Calendário", icon: CalendarDays },
-  { href: "/dashboard", label: "Nutrição", icon: Utensils },
+  { href: "/calendario", label: "Calendário", icon: CalendarDays },
+  { href: "/nutricao", label: "Nutrição", icon: Utensils },
   { href: "/financeiro", label: "Financeiro", icon: CreditCard },
   { href: "/loja", label: "SUPREMA POWER", icon: ShoppingBag },
-  { href: "/dashboard", label: "Evolução", icon: BarChart3 },
+  { href: "/evolucao", label: "Evolução", icon: BarChart3 },
   { href: "/", label: "Comunidade", icon: Users },
-  { href: "/dashboard", label: "Mensagens", icon: MessageCircle },
-  { href: "/perfil", label: "Configurações", icon: Settings }
+  { href: "/mensagens", label: "Mensagens", icon: MessageCircle },
+  { href: "/configuracoes", label: "Configurações", icon: Settings }
 ];
 
 export function Sidebar() {

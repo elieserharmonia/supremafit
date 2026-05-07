@@ -840,3 +840,126 @@ textarea.field { padding: 12px 14px; min-height: 94px; resize: vertical; }
   .store-grid, .home-quick-grid { grid-template-columns: 1fr; }
   .champion-item { grid-template-columns: 34px 42px 1fr; }
 }
+
+/* SUPREMA FIT v3 refinements */
+:root { --gold: #d9a441; }
+
+.brand-type {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 5px;
+  line-height: 1;
+  white-space: nowrap;
+  font-size: 22px;
+}
+.brand-type .suprema,
+.brand-type .fit { display: inline-block; }
+.brand-center { max-width: 100%; overflow: hidden; }
+.mobile-header .brand-center { justify-self: center; }
+
+.weekly-highlights {
+  margin: 8px 0 14px;
+  padding: 2px 0 0;
+}
+.weekly-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 7px 3px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  opacity: .82;
+}
+.champion-scroll {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 0 2px 5px;
+  scrollbar-width: none;
+}
+.champion-scroll::-webkit-scrollbar { display: none; }
+.champion-pill {
+  min-width: 176px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(217,164,65,.16), rgba(255,106,0,.08)), rgba(255,255,255,.045);
+  border: 1px solid rgba(217,164,65,.22);
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+}
+.small-avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  box-shadow: 0 0 0 2px rgba(217,164,65,.22);
+}
+.champion-text { display: flex; flex-direction: column; min-width: 0; }
+.champion-text strong { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.champion-text small { color: var(--gold); font-size: 10px; margin-top: 1px; }
+.weekly-highlights .champion-rank { color: var(--gold); font-size: 11px; }
+
+.social-icon-links { gap: 10px; }
+.social-icon-links a {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(135deg, rgba(255,106,0,.2), rgba(255,255,255,.06));
+}
+.social-icon-links a:hover { transform: translateY(-1px); border-color: rgba(255,106,0,.55); color: var(--orange); }
+.social-icon-links svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.social-icon-links a:nth-child(2) svg,
+.social-icon-links a:nth-child(3) svg { fill: currentColor; stroke: none; }
+
+.post-menu-wrap { position: relative; }
+.post-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 8;
+  min-width: 160px;
+  padding: 7px;
+  border-radius: 16px;
+  background: #111318;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 18px 45px rgba(0,0,0,.4);
+}
+.post-menu button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  border-radius: 11px;
+  font-weight: 800;
+}
+.post-menu button:hover { background: rgba(255,106,0,.13); color: var(--orange); }
+
+.equipment-bench { background: linear-gradient(135deg, #252b36, #0e1014 54%, #5a2c08); }
+.equipment-img svg rect,
+.equipment-img svg path,
+.equipment-img svg circle { vector-effect: non-scaling-stroke; }
+
+.clickable-card { cursor: pointer; transition: .18s ease; }
+.clickable-card:hover { transform: translateY(-1px); border-color: rgba(255,106,0,.28); }
+
+@media (max-width: 380px) {
+  .brand-type { font-size: 18px; gap: 4px; }
+  .logo-image { width: 32px; height: 32px; }
+  .champion-pill { min-width: 158px; }
+}

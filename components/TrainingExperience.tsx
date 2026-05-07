@@ -8,6 +8,7 @@ export function TrainingExperience() {
   const [category, setCategory] = useState<WorkoutCategory>("Peito");
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [selected, setSelected] = useState<Exercise | null>(null);
+  const [tab, setTab] = useState<"exercicios" | "aquecimento">("exercicios");
   const [profile, setProfile] = useState<StudentProfile | null>(null);
   const [history, setHistory] = useState<WorkoutCategory[]>([]);
   const [lastCheckIn, setLastCheckIn] = useState<string | null>(null);
@@ -122,11 +123,21 @@ export function TrainingExperience() {
       </section>
 
       <div className="tabs">
-        <button className="tab active">Exercícios</button>
-        <button className="tab">Aquecimento</button>
+        <button type="button" onClick={() => setTab("exercicios")} className={`tab ${tab === "exercicios" ? "active" : ""}`}>Exercícios</button>
+        <button type="button" onClick={() => setTab("aquecimento")} className={`tab ${tab === "aquecimento" ? "active" : ""}`}>Aquecimento</button>
       </div>
 
-      {plan.exercises.map((exercise, index) => (
+      {tab === "aquecimento" && (
+        <section className="card finance-card">
+          <h2 style={{ marginTop: 0 }}>Aquecimento recomendado</h2>
+          <p className="muted">{plan.warmup}</p>
+          <div className="equipment-steps">
+            <small>Execute em intensidade leve/moderada, sem chegar à fadiga. O objetivo é preparar articulações, aumentar temperatura corporal e melhorar a segurança do treino.</small>
+          </div>
+        </section>
+      )}
+
+      {tab === "exercicios" && plan.exercises.map((exercise, index) => (
         <ExerciseEquipmentCard
           key={exercise.name}
           index={index + 1}
@@ -220,23 +231,105 @@ function EquipmentIllustration({ exercise, large = false }: { exercise: Exercise
   const kind = getEquipmentKind(exercise.equipment, exercise.name);
   return (
     <div className={`equipment-img equipment-${kind} ${large ? "equipment-large" : ""}`} aria-label={`Imagem ilustrativa do equipamento: ${exercise.equipment}`}>
-      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
-        <rect x="16" y="88" width="108" height="8" rx="4" />
-        <circle cx="70" cy="34" r="10" />
-        <path d="M54 48h32l10 30H44z" />
-        <path d="M35 38h70" />
-        <path d="M26 30v16M114 30v16" />
-        <path className="orange-stroke" d="M33 76c18-15 55-15 74 0" />
-        <path className="orange-stroke" d="M42 96h56" />
-      </svg>
+      <EquipmentSvg kind={kind} />
       <span>{exercise.equipment}</span>
     </div>
+  );
+}
+
+function EquipmentSvg({ kind }: { kind: string }) {
+  if (kind === "cardio") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <path d="M31 88h78" />
+        <path d="M42 88l14-44h28l14 44" />
+        <path d="M50 50h40" />
+        <circle cx="70" cy="30" r="8" />
+        <path className="orange-stroke" d="M35 96h70" />
+        <path className="orange-stroke" d="M55 66h30" />
+      </svg>
+    );
+  }
+  if (kind === "cable") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <path d="M32 22h76v82" />
+        <path d="M42 104V22" />
+        <circle cx="70" cy="32" r="8" />
+        <path d="M70 40v26" />
+        <path d="M52 80c12-14 25-14 36 0" />
+        <path className="orange-stroke" d="M70 40l25 28" />
+        <path className="orange-stroke" d="M95 68l12 12" />
+      </svg>
+    );
+  }
+  if (kind === "legs") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <path d="M28 92h84" />
+        <path d="M38 82h36l18-24" />
+        <path d="M76 84l28-38" />
+        <path d="M100 46h18" />
+        <circle cx="54" cy="52" r="9" />
+        <path d="M48 62l-8 18" />
+        <path className="orange-stroke" d="M80 62l22 14" />
+        <path className="orange-stroke" d="M34 100h72" />
+      </svg>
+    );
+  }
+  if (kind === "freeweight") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <path d="M30 62h80" />
+        <path d="M24 48v28M34 44v36M106 44v36M116 48v28" />
+        <circle cx="70" cy="38" r="9" />
+        <path d="M55 52h30l8 34H47z" />
+        <path className="orange-stroke" d="M49 91h42" />
+        <path className="orange-stroke" d="M42 62h56" />
+      </svg>
+    );
+  }
+  if (kind === "bench") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <path d="M28 88h84" />
+        <path d="M42 80l40-28 18 28" />
+        <path d="M38 40h64" />
+        <path d="M30 32v16M110 32v16" />
+        <circle cx="62" cy="50" r="7" />
+        <path className="orange-stroke" d="M52 76h48" />
+        <path className="orange-stroke" d="M38 96h72" />
+      </svg>
+    );
+  }
+  if (kind === "mat") {
+    return (
+      <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+        <rect x="25" y="78" width="90" height="16" rx="8" />
+        <circle cx="48" cy="52" r="8" />
+        <path d="M56 56l30 14" />
+        <path d="M78 68l24-14" />
+        <path d="M72 69l-18 12" />
+        <path className="orange-stroke" d="M34 102h72" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 140 120" role="img" aria-hidden="true">
+      <rect x="26" y="24" width="88" height="74" rx="12" />
+      <circle cx="70" cy="42" r="9" />
+      <path d="M54 58h32l10 25H44z" />
+      <path d="M36 96h68" />
+      <path className="orange-stroke" d="M42 84h56" />
+      <path className="orange-stroke" d="M50 32h40" />
+    </svg>
   );
 }
 
 function getEquipmentKind(equipment: string, name: string) {
   const text = `${equipment} ${name}`.toLowerCase();
   if (text.includes("esteira") || text.includes("bike") || text.includes("elíptico") || text.includes("escada") || text.includes("cardio")) return "cardio";
+  if (text.includes("banco") || text.includes("supino")) return "bench";
   if (text.includes("halter") || text.includes("barra") || text.includes("anilha")) return "freeweight";
   if (text.includes("polia") || text.includes("cabo") || text.includes("pulley") || text.includes("cross")) return "cable";
   if (text.includes("leg") || text.includes("smith") || text.includes("extensora") || text.includes("flexora")) return "legs";
@@ -255,6 +348,7 @@ function getExerciseSteps(exercise: Exercise) {
     cardio: ["Comece em intensidade leve por 3 a 5 minutos.", "Aumente o ritmo aos poucos mantendo postura e respiração controlada.", "Reduza gradualmente no final para recuperar."],
     freeweight: ["Pegue os halteres ou barra com punhos firmes.", "Mantenha abdômen contraído e coluna neutra.", "Evite balanço do corpo e finalize a série com segurança."],
     cable: ["Regule a altura da polia e escolha o acessório correto.", "Mantenha base firme e controle o retorno do cabo.", "Não deixe o peso bater no final do movimento."],
+    bench: ["Ajuste o banco para manter o peitoral alinhado com a pegada.", "Apoie os pés no chão e estabilize escápulas e coluna.", "Desça com controle e empurre sem travar totalmente os cotovelos."],
     legs: ["Ajuste banco, encosto e apoio dos pés.", "Mantenha joelhos alinhados com a ponta dos pés.", "Desça com controle e evite travar articulações no final."],
     mat: ["Posicione o corpo no colchonete com alinhamento.", "Contraia abdômen e glúteos para estabilizar.", "Faça o movimento sem compensar lombar ou pescoço."],
     machine: common

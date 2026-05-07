@@ -1,27 +1,33 @@
 # SUPREMA FIT App
 
-Projeto Next.js do app SUPREMA FIT ACADEMIA, pronto para subir no GitHub e publicar na Vercel.
+App MVP da SUPREMA FIT ACADEMIA em Next.js.
 
-## Novidades desta versão
+## Atualização v3
 
-- Botão `+` de postar no topo esquerdo, na linha do nome do app.
-- Feed social para postar treinos, fotos aleatórias, evolução, alimentação e bastidores.
-- Ícones e menus com navegação clicável.
-- Aba Treinos com orientações, imagens ilustrativas dos equipamentos e instruções de uso.
-- Alertas de aquecimento e hidratação.
-- Sugestões inteligentes com base em objetivo, histórico e inatividade.
-- Perfil com BIO estilo Instagram e campos para links externos.
-- Destaque na home para alunos que treinam todos os dias.
-- Sugestões de treino e alimentação educativa para hipertrofia, saúde, condicionamento e emagrecimento.
-- Loja `SUPREMA POWER` para suplementos, vitaminas, camisetas e acessórios.
+- Nome da marca ajustado com **SUPREMA FIT** na mesma linha.
+- Botão de postagem mantido no topo superior esquerdo.
+- Destaques de alunos constantes agora aparecem na horizontal logo abaixo dos stories, com texto sutil dourado **Destaque da Semana**.
+- BIO estilo Instagram com ícones sociais de Instagram, Facebook e WhatsApp.
+- Mais botões e ícones clicáveis: notificações, configurações, menu de post, abas de treino, calendário, nutrição, evolução e mensagens.
+- Aba Treinos com ilustrações diferentes por tipo de equipamento e instruções de uso.
+- Arquivo `EQUIPAMENTOS-PARA-FOTOS.md` com lista de fotos reais sugeridas para substituir as ilustrações.
 
 ## Como publicar
 
-1. Envie todos os arquivos para a raiz do repositório GitHub.
-2. Na Vercel, importe o repositório.
-3. Framework: Next.js.
-4. Clique em Deploy.
+1. Descompacte o ZIP.
+2. Suba os arquivos na raiz do repositório GitHub.
+3. Na Vercel, faça Redeploy.
 
-## Observação
+Estrutura correta:
 
-Esta é uma versão MVP front-end. Para produção real, ainda será necessário conectar banco de dados, login, pagamentos, upload real de fotos/vídeos e notificações push.
+```txt
+app/
+components/
+lib/
+public/
+package.json
+next.config.mjs
+tsconfig.json
+```
+
+Não suba a pasta inteira dentro de outra pasta. Os arquivos devem ficar na raiz do repositório.

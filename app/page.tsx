@@ -74,24 +74,21 @@ export default function HomePage() {
         <div className="content-pad">
           <StoryList />
 
-          <section className="daily-champions card">
-            <div className="champion-head">
-              <div>
-                <span className="eyebrow">Prestígio Suprema</span>
-                <h2>Quem treina todo dia</h2>
-              </div>
-              <Trophy color="var(--orange)" />
+          <section className="weekly-highlights" aria-label="Destaque da semana">
+            <div className="weekly-title-row">
+              <span>Destaque da Semana</span>
+              <Trophy size={14} color="var(--gold)" />
             </div>
-            <div className="champion-list">
+            <div className="champion-scroll">
               {champions.map((person, index) => (
-                <div className="champion-item" key={person.name}>
-                  <div className="champion-rank">#{index + 1}</div>
-                  <div className="avatar">{person.initials}</div>
-                  <div>
+                <Link href="/perfil" className="champion-pill" key={person.name}>
+                  <span className="champion-rank">#{index + 1}</span>
+                  <span className="avatar small-avatar">{person.initials}</span>
+                  <span className="champion-text">
                     <strong>{person.name}</strong>
-                    <small>{person.streak} treinando com constância</small>
-                  </div>
-                </div>
+                    <small>{person.streak}</small>
+                  </span>
+                </Link>
               ))}
             </div>
           </section>
@@ -100,7 +97,7 @@ export default function HomePage() {
             <Link href="/postar" className="quick-card orange-card"><Plus size={18} />Postar foto ou treino</Link>
             <Link href="/loja" className="quick-card"><ShoppingBag size={18} />SUPREMA POWER</Link>
             <Link href="/treinos" className="quick-card"><Zap size={18} />Treino inteligente</Link>
-            <div className="quick-card"><Droplets size={18} />Beba água hoje</div>
+            <Link href="/notificacoes" className="quick-card"><Droplets size={18} />Beba água hoje</Link>
           </section>
 
           <div className="alert-card hydration-alert">

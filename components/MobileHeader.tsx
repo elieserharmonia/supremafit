@@ -12,15 +12,15 @@ export function MobileHeader({ right = "bell", postAction = true }: { right?: "b
       ) : <span />}
       <AppLogo />
       {right === "bell" && (
-        <button className="icon-button" aria-label="Notificações">
+        <Link className="icon-button" href="/notificacoes" aria-label="Notificações">
           <Bell size={19} />
           <span className="badge">12</span>
-        </button>
+        </Link>
       )}
       {right === "settings" && (
-        <button className="icon-button" aria-label="Configurações">
+        <Link className="icon-button" href="/configuracoes" aria-label="Configurações">
           <Settings size={19} />
-        </button>
+        </Link>
       )}
       {right === "none" && <span />}
     </header>

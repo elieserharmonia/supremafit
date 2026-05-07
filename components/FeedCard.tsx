@@ -30,6 +30,7 @@ export function FeedCard({ post }: { post: Post }) {
   const [commentsCount, setCommentsCount] = useState(post.comments);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  const [optionsOpen, setOptionsOpen] = useState(false);
 
   function toggleLike() {
     setLiked((value) => !value);
@@ -44,7 +45,16 @@ export function FeedCard({ post }: { post: Post }) {
           <strong>{post.author}</strong>
           <span>{post.time} · {post.category}</span>
         </div>
-        <button className="action-button" aria-label="Mais opções"><MoreHorizontal size={18} /></button>
+        <div className="post-menu-wrap">
+          <button className="action-button" aria-label="Mais opções" onClick={() => setOptionsOpen((value) => !value)}><MoreHorizontal size={18} /></button>
+          {optionsOpen && (
+            <div className="post-menu">
+              <button onClick={() => { setShareOpen(true); setOptionsOpen(false); }}>Compartilhar</button>
+              <button onClick={() => { navigator.clipboard?.writeText(location.href); setOptionsOpen(false); }}>Copiar link</button>
+              <button onClick={() => setOptionsOpen(false)}>Denunciar post</button>
+            </div>
+          )}
+        </div>
       </div>
       <div className={`media-card media-${post.mediaVariant || "gym"}`}>
         <div className="fake-photo-person" />
