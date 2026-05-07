@@ -4,6 +4,17 @@ App social fitness da SUPREMA FIT ACADEMIA, criado em Next.js para deploy na Ver
 
 ## O que existe nesta versão
 
+### V10 - piloto liberado
+
+- Tela `/teste` com contas e checklist para testar com alunos
+- Múltiplas contas demo de alunos
+- Conta demo de personal/admin
+- Página `/personal` para visão do treinador
+- Posts criados no app aparecem no feed local
+- Atividades fora da academia podem virar post no feed
+- Estrutura preparada para monetizar treinos futuramente
+
+
 - Login de teste local
 - Cadastro de teste
 - Feed social
@@ -20,9 +31,17 @@ App social fitness da SUPREMA FIT ACADEMIA, criado em Next.js para deploy na Ver
 
 ## Login de teste
 
-- Aluno: `aluno@supremafit.com`
+Senha para todas as contas: `123456`
+
+- Aluno padrão: `aluno@supremafit.com`
+- Ana Paula: `ana@supremafit.com`
+- Marcos Silva: `marcos@supremafit.com`
+- Julia Bianchi: `julia@supremafit.com`
+- Carlos Lima: `carlos@supremafit.com`
 - Personal: `personal@supremafit.com`
-- Senha: `123456`
+- Admin: `admin@supremafit.com`
+
+Tela de apoio ao piloto: `/teste`
 
 ## Subir no GitHub
 
